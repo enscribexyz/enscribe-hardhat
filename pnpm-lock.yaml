@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@enscribe/enscribe':
-        specifier: link:/Users/abhi/code/enscribe-core
-        version: link:../enscribe-core
+        specifier: ^0.1.2
+        version: 0.1.2(typescript@5.9.2)(zod@3.25.76)
       viem:
         specifier: ^2.38.0
         version: 2.38.1(typescript@5.9.2)(zod@3.25.76)
@@ -63,6 +63,10 @@ packages:
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
+
+  '@enscribe/enscribe@0.1.2':
+    resolution: {integrity: sha512-Wp5sL70PEllXJx2dm02ztVOUDeBS/dFaA75hu5uW1YyF95ZcwsQ27bz/k7WsJWFKIH0BI2uFr4BdZs6vFZervg==}
+    engines: {node: '>=18.0.0'}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -1787,6 +1791,15 @@ snapshots:
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+
+  '@enscribe/enscribe@0.1.2(typescript@5.9.2)(zod@3.25.76)':
+    dependencies:
+      viem: 2.38.1(typescript@5.9.2)(zod@3.25.76)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true

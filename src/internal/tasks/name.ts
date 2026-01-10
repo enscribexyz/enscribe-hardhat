@@ -21,21 +21,12 @@ const taskName: NewTaskActionFunction<TaskNameArguments> = async (
   }
 
   const chainName = args.chain || "sepolia";
-  const { l1NetworkName, l2NetworkName } = getNetworkInfo(chainName);
+  const networkInfo = getNetworkInfo(chainName);
 
   // Initialize contracts based on network
-  const l1Contracts = getContractAddresses(l1NetworkName as any);
-  const l1NetworkConnection = await hre.network.connect(l1NetworkName);
-  const [l1WalletClient] = await (l1NetworkConnection as any).viem.getWalletClients();
-
-  let l2WalletClient: WalletClient | null = null;
-  let l2Contracts = null;
-
-  if (l2NetworkName) {
-    l2Contracts = getContractAddresses(l2NetworkName as any);
-    const l2NetworkConnection = await hre.network.connect(l2NetworkName);
-    [l2WalletClient] = await (l2NetworkConnection as any).viem.getWalletClients();
-  }
+  const contracts = getContractAddresses(networkInfo.networkName as any);
+  const networkConnection = await hre.network.connect(networkInfo.networkName);
+  const [walletClient] = await (networkConnection as any).viem.getWalletClients();
 
   const nameNormalized = normalize(args.name);
   console.log(`normalized name is ${nameNormalized}`);
@@ -46,8 +37,7 @@ const taskName: NewTaskActionFunction<TaskNameArguments> = async (
     const result = await nameContract({
       name: nameNormalized,
       contractAddress: args.contract,
-      walletClient: l1WalletClient,
-      l2WalletClient: l2WalletClient,
+      walletClient: walletClient,
       chainName,
       opType: "hh-enscribe-nameexisting",
       enableMetrics: true, // Enable metrics logging for plugin usage
