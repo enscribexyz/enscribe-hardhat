@@ -2,13 +2,11 @@ import type { NewTaskActionFunction } from "hardhat/types/tasks";
 import type { HardhatRuntimeEnvironment } from "hardhat/types/hre";
 import "@nomicfoundation/hardhat-viem";
 import { normalize } from "viem/ens";
-import type { WalletClient } from "viem";
-import { nameContract, getContractAddresses, getNetworkInfo } from "@enscribe/enscribe";
+import { nameContract } from "@enscribe/enscribe";
 
 interface TaskNameArguments {
   name: string;
   contract?: string;
-  chain?: string;
 }
 
 const taskName: NewTaskActionFunction<TaskNameArguments> = async (
@@ -20,12 +18,7 @@ const taskName: NewTaskActionFunction<TaskNameArguments> = async (
     return;
   }
 
-  const chainName = args.chain || "sepolia";
-  const networkInfo = getNetworkInfo(chainName);
-
-  // Initialize contracts based on network
-  const contracts = getContractAddresses(networkInfo.networkName as any);
-  const networkConnection = await hre.network.connect(networkInfo.networkName);
+  const networkConnection = await hre.network.connect();
   const [walletClient] = await (networkConnection as any).viem.getWalletClients();
 
   const nameNormalized = normalize(args.name);
@@ -33,12 +26,12 @@ const taskName: NewTaskActionFunction<TaskNameArguments> = async (
 
   // Use the library API
   try {
-    console.log(`\Setting name for contract ${args.contract} on chain ${chainName} ...`);
+    console.log(`\Setting name for contract ${args.contract} on chain ${networkConnection.networkName} ...`);
     const result = await nameContract({
       name: nameNormalized,
       contractAddress: args.contract,
       walletClient: walletClient,
-      chainName,
+      chainName: networkConnection.networkName,
       opType: "hh-enscribe-nameexisting",
       enableMetrics: true, // Enable metrics logging for plugin usage
     });

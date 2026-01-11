@@ -26,10 +26,9 @@ npx hardhat enscribe name --help
 
 **Expected output:**
 ```
-Usage: hardhat [GLOBAL OPTIONS] enscribe name [--chain <STRING>] [--contract <STRING>] [--] name
+Usage: hardhat [GLOBAL OPTIONS] enscribe name [--contract <STRING>] 
 
 OPTIONS:
-  --chain      Chain on which the address is to be named
   --contract   Contract address for which the primary name is to be set
 ...
 ```

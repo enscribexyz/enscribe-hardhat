@@ -49,19 +49,16 @@ describe("name task integration", () => {
     const mockArgs = {
       name: "test.example.eth",
       contract: "0x1234567890123456789012345678901234567890",
-      chain: "sepolia",
     };
 
     expect(mockArgs.name).toBe("test.example.eth");
     expect(mockArgs.contract).toBe("0x1234567890123456789012345678901234567890");
-    expect(mockArgs.chain).toBe("sepolia");
   });
 
   it("should handle missing contract address gracefully", () => {
     const mockArgs = {
       name: "test.example.eth",
       contract: null,
-      chain: "sepolia",
     };
 
     expect(mockArgs.contract).toBeNull();

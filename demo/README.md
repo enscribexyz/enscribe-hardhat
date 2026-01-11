@@ -42,7 +42,7 @@ npx hardhat ignition deploy ignition/modules/Counter.ts --network sepolia
 # Name the deployed contract
 npx hardhat enscribe name mycontract.myname.eth \
   --contract 0xYourContractAddress \
-  --chain sepolia
+  --network sepolia
 ```
 
 ### Option 3: Name an Existing Contract
@@ -52,7 +52,7 @@ Name any existing contract:
 ```bash
 npx hardhat enscribe name mycontract.myname.eth \
   --contract 0x1234567890123456789012345678901234567890 \
-  --chain sepolia
+  --network sepolia
 ```
 
 ## Examples
@@ -62,7 +62,7 @@ npx hardhat enscribe name mycontract.myname.eth \
 ```bash
 npx hardhat enscribe name counter.myname.eth \
   --contract 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb \
-  --chain sepolia
+  --network sepolia
 ```
 
 ### L2 Usage (Optimism Sepolia)
@@ -70,7 +70,7 @@ npx hardhat enscribe name counter.myname.eth \
 ```bash
 npx hardhat enscribe name counter.myname.eth \
   --contract 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb \
-  --chain optimism-sepolia
+  --network optimism-sepolia
 ```
 
 ### Programmatic Usage
