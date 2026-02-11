@@ -61,12 +61,6 @@ async function main() {
     if (result.transactions.reverseResolution) {
       console.log(`   ✓ Reverse resolution: ${result.transactions.reverseResolution}`);
     }
-    if (result.transactions.l2ForwardResolution) {
-      console.log(`   ✓ L2 forward resolution: ${result.transactions.l2ForwardResolution}`);
-    }
-    if (result.transactions.l2ReverseResolution) {
-      console.log(`   ✓ L2 reverse resolution: ${result.transactions.l2ReverseResolution}`);
-    }
     
     console.log(`\n🎉 Done! ${normalizedName} now resolves to ${counter.address}`);
     console.log(`   View at: ${result.explorerUrl}`);

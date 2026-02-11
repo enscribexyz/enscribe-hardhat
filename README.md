@@ -37,6 +37,25 @@ import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
 const config: HardhatUserConfig = {
   plugins: [hardhatToolboxViemPlugin, hardhatEnscribePlugin],
   // ... rest of your config
+  networks: {
+    hardhat: {
+      type: "http",
+      chainType: "l1",
+      url: "http://127.0.0.1:8545",
+    },
+    sepolia: {
+      type: "http",
+      chainType: "l1",
+      url: configVariable("SEPOLIA_RPC_URL"),
+      accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
+    },
+    base-sepolia: {
+      type: "http",
+      chainType: "l1",
+      url: configVariable("BASE_SEPOLIA_RPC_URL"),
+      accounts: [configVariable("BASE_SEPOLIA_PRIVATE_KEY")],
+    },
+  },
 };
 
 export default config;
@@ -65,10 +84,10 @@ npx hardhat enscribe name mycontract.mydomain.eth --contract 0x1234...5678
 
 ## Supported Networks
 
-The plugin supports the following networks:
-
-- **Ethereum Mainnet** (`mainnet`)
-- **Sepolia Testnet** (`sepolia`) - Default
+- **Mainnet**: mainnet
+- **Testnet**: sepolia
+- **L2 Mainnets**: linea, base, optimism, arbitrum, scroll
+- **L2 Testnets**: linea-sepolia, base-sepolia, optimism-sepolia, arbitrum-sepolia, scroll-sepolia
 
 ## Contract Requirements
 
@@ -104,10 +123,18 @@ Contracts that have reverse ENS resolution already set up.
 npx hardhat run scripts/deploy.ts --network sepolia
 
 # 2. Name your contract
-npx hardhat enscribe name myawesomecontract.mydomain.eth --contract 0x1234567890123456789012345678901234567890
+npx hardhat enscribe name myawesomecontract.mydomain.eth --contract 0x1234567890123456789012345678901234567890 --network sepolia
 
 # 3. Your contract is now discoverable at:
 # https://app.enscribe.xyz/explore/11155111/myawesomecontract.mydomain.eth
+```
+
+### L2 Usage (Base Sepolia)
+
+```bash
+npx hardhat enscribe name counter.myname.base.eth \
+  --contract 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb \
+  --network base-sepolia
 ```
 
 ## Environment Setup

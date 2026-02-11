@@ -65,12 +65,12 @@ npx hardhat enscribe name counter.myname.eth \
   --network sepolia
 ```
 
-### L2 Usage (Optimism Sepolia)
+### L2 Usage (Base Sepolia)
 
 ```bash
 npx hardhat enscribe name counter.myname.eth \
   --contract 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb \
-  --network optimism-sepolia
+  --network base-sepolia
 ```
 
 ### Programmatic Usage
