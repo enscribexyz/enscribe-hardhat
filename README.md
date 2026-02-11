@@ -80,7 +80,7 @@ npx hardhat enscribe name mycontract.mydomain.eth --contract 0x1234...5678
 
 - `name` (required): The ENS name to assign (e.g., `mycontract.mydomain.eth`)
 - `--contract` (required): The contract address to name
-- `--chain` (optional): The network/chain to use (defaults to `sepolia`)
+- `--network` (required): Chain from `networks` section in the `hardhat.config.ts` on which you are naming 
 
 ## Supported Networks
 
